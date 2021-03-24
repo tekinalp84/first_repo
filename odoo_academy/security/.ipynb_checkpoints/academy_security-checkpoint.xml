@@ -3,7 +3,6 @@
     <record id="group_academy_admin" model="res.groups">
         <field name="name">Academy / Admin</field>           
     </record>
-    
     <record id="only_active_modify" model="ir.rule">
         <field name="name">Only Active Courses Can Be Modified</field>
         <field name="perm_read" eval="0"/>
