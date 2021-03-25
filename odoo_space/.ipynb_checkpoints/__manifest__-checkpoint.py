@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 
 {
     'name' : 'Odoo Space',
@@ -16,7 +16,7 @@
     
     'category': 'Logistics',
     
-    'version':'1.0',
+    'version':'0.1',
     
     'depends': ['base'],
     
@@ -28,8 +28,6 @@
     'demo':[
         
         
-    ],    
-    
-    
+    ],      
     
 }
