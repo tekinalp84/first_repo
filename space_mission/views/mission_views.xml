@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mission_form" model="ir.ui.view">
+            <field name="name">mission.form</field>
+            <field name="model">space.mission</field>
+            <field name="arch" type="xml">
+                <form string="Mission Form View">
+                    <sheet string="Mission Name">
+                        <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="spaceship_id"/>
+                                <field name="captain"/>
+                            </group>
+                            <group>
+                                <field name="launch_date"/>
+                                <field name="return_date"/>
+                                <field name="duration"/>
+                            </group>
+                            <notebook>
+                                <page string="Crew Members">
+                                    <field name="crew_members"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="mission_tree" model="ir.ui.view">
+            <field name="name">mission.tree</field>
+            <field name="model">space.mission</field>
+            <field name="arch" type="xml">
+                <tree string="Tree List View">
+                    <field name="name"/>
+                    <field name="spaceship_id"/>
+                    <field name="captain"/>
+                    <field name="launch_date"/>
+                    <field name="return_date"/>
+                    <field name="duration"/>
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

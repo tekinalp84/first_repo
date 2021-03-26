@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="spaceship_form" model="ir.ui.view">
-            <field name="name">Spaceship Form</field>
+            <field name="name">spaceship.form</field>
             <field name="model">space.spaceship</field>
             <field name="arch" type="xml">
                 <form string ='Spaceship Form'>
@@ -23,7 +23,7 @@
                         </group>
                         <notebook>
                             <page string='Ship Image'>
-                                <field name="ship_image"/>
+                                <field name="ship_image" widget="image"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -32,7 +32,7 @@
         </record>
         
         <record id="spaceship_tree" model="ir.ui.view">
-            <field name="name">Spaceships List</field>
+            <field name="name">spaceship.list</field>
             <field name="model">space.spaceship</field>
             <field name="arch" type="xml">
                 <tree>
