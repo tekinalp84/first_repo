@@ -4,7 +4,6 @@
         <record model="space.spaceship" id="millenium_falcon">
             <field name="name">Millenium Falcon</field>
             <field name="ship_type">exploration</field>
-            <field name="dimensions">34.75m x 7.8m</field>
             <field name="description">Smuggling Ship</field>
             <field name="fuel_type">Liquid Metal Fuel</field>
             <field name="number_of_passengers">30</field>
@@ -13,7 +12,6 @@
         <record model="space.spaceship" id="x_wing">
             <field name="name">X-Wing</field>
             <field name="ship_type">fighter</field>
-            <field name="dimensions">11.75m x 2.5m</field>
             <field name="description">
             Space Superiority fighter:
             Armed with 4 Torpedo and 2 Laser Cannons
@@ -25,7 +23,6 @@
         <record model="space.spaceship" id="uss_enterprise">
             <field name="name">U.S.S Enterprise</field>
             <field name="ship_type">cruise</field>
-            <field name="dimensions">288.646 metres</field>
             <field name="description">Constitution Class Long distance Vessel</field>
             <field name="fuel_type">Matter-antimatter reaction</field>
             <field name="number_of_passengers">850</field>
