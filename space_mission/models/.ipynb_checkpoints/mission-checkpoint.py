@@ -14,11 +14,11 @@ class Mission(models.Model):
     
     name = fields.Char(string='Mission', required=True)
     
-    ship = fields.Char(string='Vessel', related='spaceship_id.name', required=True)
-    
     crew_members = fields.Many2many(comodel_name='res.partner',string='Crew Members')
     
     captain = fields.Many2one(comodel_name='res.partner', string='Captain')
+    
+    fuel_required = fields.Float(string='Amount of Fuel Needed', default=0.00)
     
     launch_date = fields.Date(string='Start Date',
                             default=fields.Date.today)
@@ -30,6 +30,14 @@ class Mission(models.Model):
                              compute='_compute_return_date',
                              inverse='_inverse_end_date',
                              store=True)
+    total_fuel = fields.Float(string='Total Consumed Fuel',
+                              compute='_compute_total_fuel',
+                              store=True)
+    
+    @api.depends('fuel_required')
+    def _compute_total_fuel(self):
+        for r in self:
+            r.total_fuel = r.fuel_required * r.spaceship_id.engines
     
     @api.depends('launch_date','duration')
     

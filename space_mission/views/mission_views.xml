@@ -12,6 +12,7 @@
                             <group>
                                 <field name="spaceship_id"/>
                                 <field name="captain"/>
+                                <field name="fuel_required"/>
                             </group>
                             <group>
                                 <field name="launch_date"/>
@@ -37,10 +38,22 @@
                     <field name="name"/>
                     <field name="spaceship_id"/>
                     <field name="captain"/>
+                    <field name="total_fuel"/>
                     <field name="launch_date"/>
                     <field name="return_date"/>
                     <field name="duration"/>
                 </tree>
+            </field>
+        </record>
+        
+        <record id="mission_graph" model="ir.ui.view">
+            <field name="name">mission.graph</field>
+            <field name="model">space.mission</field>
+            <field name="arch" type="xml">
+                <graph string="Fuel Usage by Missions">
+                    <field name="name"/>
+                    <field name="total_fuel" type="measure"/>
+                </graph>
             </field>
         </record>
         

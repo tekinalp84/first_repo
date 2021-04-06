@@ -17,6 +17,7 @@ class Spaceship(models.Model):
     length = fields.Float(string='Length', default=0.00)
     width = fields.Float(string='Width', default=0.00)
     description = fields.Text(string='Description')
+    engines = fields.Integer(string='Number of Engines', default=1)
     fuel_type = fields.Text(string='Fuel Type')
     number_of_passengers = fields.Integer(string='Number of Passengers')
     ship_image = fields.Image(string="Ship Image")

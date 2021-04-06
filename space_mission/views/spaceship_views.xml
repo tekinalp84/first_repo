@@ -17,6 +17,7 @@
                             <group>
                                 <field name="ship_type"/>
                                 <field name="number_of_passengers"/>
+                                <field name="engines"/>
                                 <field name="fuel_type"/>
                                 <field name="active"/>
                             </group>
