@@ -34,6 +34,10 @@ class Mission(models.Model):
                               compute='_compute_total_fuel',
                               store=True)
     
+    project_ids = fields.One2many(string='Projects',
+                                 comodel_name='project.project',
+                                 inverse_name='mission_id')
+    
     @api.depends('fuel_required')
     def _compute_total_fuel(self):
         for r in self:

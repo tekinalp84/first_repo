@@ -21,7 +21,22 @@
                             </group>
                             <notebook>
                                 <page string="Crew Members">
-                                    <field name="crew_members"/>
+                                    <field name="crew_members">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="phone"/>
+                                            <field name="email"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Projects">
+                                    <field name="project_ids">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="user_id"/>
+                                            <field name="captain"/>
+                                        </tree>
+                                    </field>
                                 </page>
                             </notebook>
                         </group>
