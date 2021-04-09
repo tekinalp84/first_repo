@@ -5,3 +5,4 @@ spaceship_crew,spaceship crew,model_space_spaceship,group_space_crew,1,1,1,0
 mission_crew,mission crew,model_space_mission,group_space_crew,1,1,1,0
 spaceship_read_all,spaceship read all,model_space_spaceship,,1,0,0,0
 mission_read_all,mission read all,model_space_mission,,1,0,0,0
+wizard_admin,wizard admin,model_space_project_wizard,group_space_admin,1,1,1,1
