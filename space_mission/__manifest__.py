@@ -28,6 +28,7 @@
         'views/mission_views.xml',
         'views/project_views_inherit.xml',
         'wizard/project_wizard_views.xml',
+        'report/spaceship_report_template.xml',
         
         
     ],

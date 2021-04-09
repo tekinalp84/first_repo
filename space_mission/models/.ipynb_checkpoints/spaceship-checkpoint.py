@@ -24,6 +24,10 @@ class Spaceship(models.Model):
     
     active = fields.Boolean(string='Active', default=True)
     
+    mission_ids = fields.One2many(comodel_name='space.mission',
+                                 inverse_name='spaceship_id',
+                                 string='Missions')
+    
     @api.constrains('length','width')
     
     def _check_ship_size(self):

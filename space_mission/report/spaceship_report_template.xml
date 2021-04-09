@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.report" id="report_spaceship">
+        <field name="name">Spaceship Report</field>
+        <field name="model">space.spaceship</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">space_mission.report_spaceship_document</field>
+        <field name="report_file">space_mission.report_spaceship</field>
+    </record> 
+    
+    <template id="report_spaceship_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1 t-field="doc.name" class="mt16"/>
+                        <div class="row mt32 mb32" id="spaceship_info">
+                            <div t-if="doc.description" class="col-auto mw-100 mb-2">
+                                <strong>Description</strong>
+                                <span t-field="doc.description"/>
+                            </div>
+                            <div class="col-auto mw-100 mb-2">
+                                <strong>Dimensions</strong>
+                                <t t-if="doc.length">
+                                    <span t-field="doc.length"/>
+                                </t>
+                                x
+                                <t t-if="doc.width">
+                                    <span t-field="doc.width"/>
+                                </t>
+                            </div>
+                            <div class="col-auto mw-100 mb-2">
+                                <strong>Engine</strong>
+                                <t t-if="doc.engines">
+                                    <span t-field="doc.engines"/>
+                                </t>
+                                <strong> Fuel Type</strong>
+                                <t t-if="doc.fuel_type">
+                                    <span t-field="doc.fuel_type"/>
+                                </t>
+                            </div>
+                            <h5>Missions</h5>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th name="th_mission">Mission</th>
+                                        <th name="th_captain">Captain</th>
+                                        <th name="th_duration">Duration</th>
+                                        <th name="th_fuel">Required Fuel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.mission_ids" t-as="mission">
+                                        <tr>
+                                            <td t-if="mission.name" name="td_mission">
+                                                <span t-field="mission.name"/>          
+                                            </td>
+                                            <td t-if="mission.captain" name="td_captain">
+                                                <span t-field="mission.captain"/>
+                                            </td>
+                                            <td t-if="mission.duration" name="td_duration">
+                                                <span t-field="mission.duration"/>
+                                            </td>
+                                            <td t-if="mission.total_fuel" name="td_fuel">
+                                                <span t-field="mission.total_fuel"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

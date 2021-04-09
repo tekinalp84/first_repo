@@ -26,6 +26,15 @@
                             <page string='Ship Image'>
                                 <field name="ship_image" widget="image"/>
                             </page>
+                            <page string='Missions'>
+                                <field name="mission_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="captain"/>
+                                        <field name="duration"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
