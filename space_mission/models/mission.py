@@ -34,9 +34,14 @@ class Mission(models.Model):
                               compute='_compute_total_fuel',
                               store=True)
     
+    
+    def _current_mission(self):
+        return self.env['space.mission'].browse(self._context.get('active_id'))
+    
     project_ids = fields.One2many(string='Projects',
                                  comodel_name='project.project',
-                                 inverse_name='mission_id')
+                                 inverse_name='mission_id',
+                                 default=_current_mission)
     
     @api.depends('fuel_required')
     def _compute_total_fuel(self):

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="mission_website">
+            <t t-call="website.layout">
+                <t t-set="title">Space Missions</t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <h1>Missions</h1>
+                        <t t-foreach="missions" t-as="mission">
+                            <h3>
+                                <t t-esc="mission.id"/>
+                                <t t-esc="mission.name"/>
+                            </h3>
+                            <div class="container">
+                                <p>Captain:
+                                    <span t-field="mission.captain"/>
+                                </p>
+                                <p>Projects:
+                                    <t t-foreach="mission.project_ids" t-as="project">
+                                        <ul>
+                                            <li>
+                                                <span t-field="project.name"/>
+                                            </li>
+                                        </ul>
+                                    </t>
+                                </p>
+                                <table class="table table-sm o_main_table">
+                                    <thead>
+                                        <tr>
+                                            <th name="name">Crew Member</th>
+                                            <th name="email">Email</th>
+                                            <th name="phone">Phone</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="mission.crew_members" t-as="crew">
+                                            <tr>
+                                                <td name="name">
+                                                    <span t-field="crew.name"/>
+                                                </td>
+                                                <td name="email">
+                                                    <span t-field="crew.email"/>
+                                                </td>
+                                                <td name="phone">
+                                                    <span t-field="crew.phone"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -18,7 +18,7 @@
     
     'category': 'Logistics',
     
-    'depends': ['project'],
+    'depends': ['project','website'],
     
     'data':[
         'security/space_mission_security.xml',
@@ -29,6 +29,7 @@
         'views/project_views_inherit.xml',
         'wizard/project_wizard_views.xml',
         'report/spaceship_report_template.xml',
+        'views/space_web_templates.xml',
         
         
     ],
