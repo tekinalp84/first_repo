@@ -6,6 +6,7 @@ from odoo.exceptions import UserError, ValidationError
 class Spaceship(models.Model):
     
     _name = 'space.spaceship'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Spaceship Info'
     
     name = fields.Char(string='Name', required=True)
@@ -28,9 +29,20 @@ class Spaceship(models.Model):
                                  inverse_name='spaceship_id',
                                  string='Missions')
     
+    
     @api.constrains('length','width')
     
     def _check_ship_size(self):
         for record in self:
             if record.width > record.length:
-                raise UserError('Width can not be bigger than the lenght')
+                raise UserError('Width can not be bigger than the length')
+    
+    def print_spaceship(self):
+        self.ensure_one()
+        return {
+            'type':'ir.actions.report',
+            'model':'space.spaceship',
+            'report_name':'space_mission.spaceship_report_template',
+            'report_type':'qweb-html',
+            'name':'Spaceship Report',
+        }

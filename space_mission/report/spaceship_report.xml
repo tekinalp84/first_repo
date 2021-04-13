@@ -3,7 +3,7 @@
     <record model="ir.actions.report" id="report_spaceship">
         <field name="name">Spaceship Report</field>
         <field name="model">space.spaceship</field>
-        <field name="report_type">qweb-html</field>
+        <field name="report_type">qweb-pdf</field>
         <field name="report_name">space_mission.spaceship_report_template</field>
         <field name="binding_model_id" ref="model_space_spaceship"/>
         <field name="binding_type">report</field>

@@ -6,6 +6,9 @@
             <field name="model">space.spaceship</field>
             <field name="arch" type="xml">
                 <form string ='Spaceship Form'>
+                    <header>
+                        <button name="print_spaceship" string="Print Spaceship" type="object" icon="fa-anchor"/>
+                    </header>
                     <sheet>
                         <h1><field name="name"/></h1>
                         <group>
@@ -37,6 +40,11 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>

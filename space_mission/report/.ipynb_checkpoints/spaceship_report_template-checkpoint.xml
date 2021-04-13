@@ -5,7 +5,6 @@
         <field name="model">space.spaceship</field>
         <field name="report_type">qweb-html</field>
         <field name="report_name">space_mission.spaceship_report_template</field>
-        <field name="report_file">space_mission.spaceship_report_template</field>
         <field name="binding_model_id" ref="model_space_spaceship"/>
         <field name="binding_type">report</field>
     </record> 
@@ -16,6 +15,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h1 t-field="doc.name" class="mt16"/>
+                       <img t-att-src="'data:image/png;base64,%s' % to_text(doc.ship_image)"/>
                         <div class="row mt32 mb32" id="spaceship_info">
                             <div t-if="doc.description" class="col-auto mw-100 mb-2">
                                 <strong>Description</strong>
