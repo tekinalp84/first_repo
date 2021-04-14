@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mission_form" model="ir.ui.view">
+            <field name="name">mission.form</field>
+            <field name="model">space.mission</field>
+            <field name="arch" type="xml">
+                <form string="Mission Form View">
+                    <header>
+                        <button name="button_draft" string="Reset to Draft" type="object"/>
+                        <button name="button_progress" string="Mission in Progress" type="object"/>
+                        <button name="button_complete" string="Mission Completed" type="object"/>
+                        <button name="button_cancel" string="Cancel" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,progress,complete"/>
+                    </header>
+                    <sheet string="Mission Name">
+                        <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="spaceship_id"/>
+                                <field name="captain"/>
+                                <field name="fuel_required"/>
+                            </group>
+                            <group>
+                                <field name="launch_date"/>
+                                <field name="return_date"/>
+                                <field name="duration"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Crew Members">
+                                <field name="crew_members">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="phone"/>
+                                        <field name="email"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Projects">
+                                <field name="project_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="user_id"/>
+                                        <field name="captain"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="mission_tree" model="ir.ui.view">
+            <field name="name">mission.tree</field>
+            <field name="model">space.mission</field>
+            <field name="arch" type="xml">
+                <tree string="Tree List View">
+                    <field name="name"/>
+                    <field name="spaceship_id"/>
+                    <field name="captain"/>
+                    <field name="total_fuel"/>
+                    <field name="launch_date"/>
+                    <field name="return_date"/>
+                    <field name="duration"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="mission_graph" model="ir.ui.view">
+            <field name="name">mission.graph</field>
+            <field name="model">space.mission</field>
+            <field name="arch" type="xml">
+                <graph string="Fuel Usage by Missions">
+                    <field name="name"/>
+                    <field name="total_fuel" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

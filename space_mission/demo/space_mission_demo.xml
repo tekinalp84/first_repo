@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="space.spaceship" id="millenium_falcon">
+            <field name="name">Millenium Falcon</field>
+            <field name="ship_type">exploration</field>
+            <field name="description">Smuggling Ship</field>
+            <field name="fuel_type">Liquid Metal Fuel</field>
+            <field name="number_of_passengers">30</field>
+        </record>
+        
+        <record model="space.spaceship" id="x_wing">
+            <field name="name">X-Wing</field>
+            <field name="ship_type">fighter</field>
+            <field name="description">
+            Space Superiority fighter:
+            Armed with 4 Torpedo and 2 Laser Cannons
+            </field>
+            <field name="fuel_type">Cryogenic Power Cells</field>
+            <field name="number_of_passengers">2</field>
+        </record>
+        
+        <record model="space.spaceship" id="uss_enterprise">
+            <field name="name">U.S.S Enterprise</field>
+            <field name="ship_type">cruise</field>
+            <field name="description">Constitution Class Long distance Vessel</field>
+            <field name="fuel_type">Matter-antimatter reaction</field>
+            <field name="number_of_passengers">850</field>
+        </record>   
+    
+    </data>
+</odoo>
