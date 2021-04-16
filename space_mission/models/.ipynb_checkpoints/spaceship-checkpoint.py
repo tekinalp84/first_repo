@@ -8,7 +8,8 @@ class Spaceship(models.Model):
     _name = 'space.spaceship'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Spaceship Info'
-    
+           
+        
     name = fields.Char(string='Name', required=True)
     ship_type = fields.Selection(string='Type',
                                 selection=[('fighter','Fighter'),
@@ -29,6 +30,13 @@ class Spaceship(models.Model):
                                  inverse_name='spaceship_id',
                                  string='Missions')
     
+    mission_count = fields.Integer(string='Mission',
+                                  compute='get_mission_count')
+    
+    def get_mission_count(self):
+        count = self.env['space.mission'].search_count([('spaceship_id','=',self.id)])
+        self.mission_count = count
+    
     
     @api.constrains('length','width')
     
@@ -45,4 +53,15 @@ class Spaceship(models.Model):
             'report_name':'space_mission.spaceship_report_template',
             'report_type':'qweb-html',
             'name':'Spaceship Report',
+        }
+   
+    def open_missions(self):
+        return {
+            'name': 'Missions',
+            'domain': [('spaceship_id','=',self.id)],
+            'view_type': 'form',
+            'res_model':'space.mission',
+            'view_id':False,
+            'view_mode':'tree,form',
+            'type':'ir.actions.act_window',            
         }

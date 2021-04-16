@@ -10,6 +10,11 @@
                         <button name="print_spaceship" string="Print Spaceship" type="object" icon="fa-anchor"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_missions" type="object" class="oe_stat_button" icon="fa-globe icon">
+                                <field name="mission_count" string="Missions" widget="statinfo"/>
+                            </button>
+                        </div>
                         <h1><field name="name"/></h1>
                         <group>
                             <group>

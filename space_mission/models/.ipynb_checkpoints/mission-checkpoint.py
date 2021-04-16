@@ -42,6 +42,7 @@ class Mission(models.Model):
     def _current_mission(self):
         return self.env['space.mission'].browse(self._context.get('active_id'))
     
+    
     project_ids = fields.One2many(string='Projects',
                                  comodel_name='project.project',
                                  inverse_name='mission_id',
@@ -92,3 +93,12 @@ class Mission(models.Model):
     def button_cancel(self):
         mission = self.env['space.mission']
         self.write({'state': 'cancel'})
+        
+    def preview_projects(self):
+        return {
+            'type':'ir.actions.act_window',
+            'model':'project.project',
+            'name':'Mission Projects',
+            'views': [[False,"tree"],[False,"form"]],
+            'domain':[["mission_id","=",self.env['space.mission'].browse(self._context.get('active_id'))]],
+        }
