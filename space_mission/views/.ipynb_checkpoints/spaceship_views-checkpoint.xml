@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="open_missions" model="ir.actions.act_window">
+            <field name="name">Missions</field>
+            <field name="res_model">space.mission</field>
+            <field name="domain">[('spaceship_id','=',active_id)]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
         <record id="spaceship_form" model="ir.ui.view">
             <field name="name">spaceship.form</field>
             <field name="model">space.spaceship</field>
@@ -11,7 +18,10 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="open_missions" type="object" class="oe_stat_button" icon="fa-globe icon">
+                            <button name="open_missions" type="object" icon="fa-globe icon">
+                                <field name="mission_count" string="Mission_text"/>
+                            </button>
+                            <button name="%(open_missions)d" type="action" class="oe_stat_button" icon="fa-archive icon">
                                 <field name="mission_count" string="Missions" widget="statinfo"/>
                             </button>
                         </div>
@@ -51,6 +61,22 @@
                         <field name="message_ids"/>
                     </div>
                 </form>
+            </field>
+        </record>
+        
+        <record id="spaceship_search" model="ir.ui.view">
+            <field name="name">spaceship.search</field>
+            <field name="model">space.spaceship</field>
+            <field name="arch" type="xml">
+                <search string="Spaceships">
+                    <field name="name"/>
+                    <field name="ship_type"/>
+                    <field name="mission_ids"/>
+                    <separator/>
+                    <group expand="1" string="Group by">
+                        <filter string="Ship Type" name="ship_type" context="{'group_by':'ship_type'}"/>
+                    </group>
+                </search>
             </field>
         </record>
         
