@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError
+from odoo.addons.website.tools import get_video_embed_code
 
 class Spaceship(models.Model):
     
@@ -29,13 +30,27 @@ class Spaceship(models.Model):
     mission_ids = fields.One2many(comodel_name='space.mission',
                                  inverse_name='spaceship_id',
                                  string='Missions')
+     
+    mission_count = fields.Integer(string='Mission Count',
+                                  compute='get_mission_count',
+                                  store=True)
     
-    mission_count = fields.Integer(string='Mission',
-                                  compute='get_mission_count')
+    video_url = fields.Char('Video URL',
+                           help='URL of a video')
+    
+    embed_code = fields.Char(compute="_compute_embed_code")
+    
+    @api.depends('video_url')
+    def _compute_embed_code(self):
+        for image in self:
+            image.embed_code = get_video_embed_code(image.video_url)
+    
     
     def get_mission_count(self):
-        count = self.env['space.mission'].search_count([('spaceship_id','=',self.id)])
-        self.mission_count = count
+        for record in self: 
+            count = record.env['space.mission'].search_count([('spaceship_id','=',record.id)])
+            record.mission_count = count
+    
     
     
     @api.constrains('length','width')

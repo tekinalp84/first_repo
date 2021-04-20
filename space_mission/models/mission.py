@@ -36,7 +36,7 @@ class Mission(models.Model):
     
     total_fuel = fields.Float(string='Total Consumed Fuel',
                               compute='_compute_total_fuel',
-                              store=True)
+                             store=True)
     
     
     def _current_mission(self):

@@ -53,6 +53,10 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string='Video'>
+                                <field name="video_url"/>
+                                <field name="embed_code" class="mt-2" widget="video_preview"/>
+                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
@@ -87,7 +91,10 @@
                 <tree>
                     <field name="name"/>
                     <field name="ship_type"/>
-                    <field name="number_of_passengers"/>
+                    <field name="number_of_passengers" optional="show"/>
+                    <field name="mission_count"/>
+                    <field name="engines" optional="hide"/>
+                    <field name="fuel_type" optional="hide"/>
                 </tree>
             </field>
         </record>

@@ -18,7 +18,7 @@
     
     'category': 'Logistics',
     
-    'depends': ['project','website'],
+    'depends': ['project','website','website_sale'],
     
     'data':[
         'security/space_mission_security.xml',

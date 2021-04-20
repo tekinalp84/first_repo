@@ -36,7 +36,7 @@ class Mission(models.Model):
     
     total_fuel = fields.Float(string='Total Consumed Fuel',
                               compute='_compute_total_fuel',
-                              store=True)
+                             store=True)
     
     
     def _current_mission(self):
@@ -93,12 +93,3 @@ class Mission(models.Model):
     def button_cancel(self):
         mission = self.env['space.mission']
         self.write({'state': 'cancel'})
-        
-    def preview_projects(self):
-        return {
-            'type':'ir.actions.act_window',
-            'model':'project.project',
-            'name':'Mission Projects',
-            'views': [[False,"tree"],[False,"form"]],
-            'domain':[["mission_id","=",self.env['space.mission'].browse(self._context.get('active_id'))]],
-        }
