@@ -30,10 +30,11 @@ class Spaceship(models.Model):
     mission_ids = fields.One2many(comodel_name='space.mission',
                                  inverse_name='spaceship_id',
                                  string='Missions')
-     
+    
     mission_count = fields.Integer(string='Mission Count',
                                   compute='get_mission_count',
-                                  store=True)
+                                  store=True,
+                                  default=False)
     
     video_url = fields.Char('Video URL',
                            help='URL of a video')
@@ -45,13 +46,12 @@ class Spaceship(models.Model):
         for image in self:
             image.embed_code = get_video_embed_code(image.video_url)
     
-    
+    @api.depends('mission_ids')
     def get_mission_count(self):
-        for record in self: 
+        for record in self:
             count = record.env['space.mission'].search_count([('spaceship_id','=',record.id)])
             record.mission_count = count
-    
-    
+  
     
     @api.constrains('length','width')
     
