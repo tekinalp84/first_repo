@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from datetime import timedelta
+import datetime
 
 
 class Mission(models.Model):
@@ -27,12 +27,14 @@ class Mission(models.Model):
                             default=fields.Date.today)
     
     duration = fields.Integer(string='Duration',
-                             default=1)
+                             compute='_compute_duration',
+                             inverse='_inverse_duration', 
+                             store=True)
+    cur_date = datetime.datetime.now().date()
+    new_date = cur_date + datetime.timedelta(days=7)
     
     return_date = fields.Date(string='Return Date',
-                             compute='_compute_return_date',
-                             inverse='_inverse_end_date',
-                             store=True)
+                             default=new_date)
     
     total_fuel = fields.Float(string='Total Consumed Fuel',
                               compute='_compute_total_fuel',
@@ -61,20 +63,21 @@ class Mission(models.Model):
         for r in self:
             r.total_fuel = r.fuel_required * r.spaceship_id.engines
     
-    @api.depends('launch_date','duration')
+    @api.depends('launch_date','return_date')
     
-    def _compute_return_date(self):
+    def _compute_duration(self):
         for record in self:
-            if not (record.launch_date and record.duration):
-                record.return_date = record.launch_date
+            if not (record.launch_date and record.return_date):
+                record.duration = 1
             else:
-                duration_days = timedelta(days=record.duration)
-                record.return_date = record.launch_date + duration_days
-                
-    def _inverse_end_date(self):
-        for record in self:
-            if record.launch_date and record.return_date:
                 record.duration = (record.return_date - record.launch_date).days
+                
+                
+    def _inverse_duration(self):
+        for record in self:
+            if record.launch_date and record.duration:
+                duration_days = datetime.timedelta(days=record.duration)
+                record.return_date = record.launch_date + duration_days
             else:
                 continue
                 

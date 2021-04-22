@@ -23,8 +23,8 @@
                                 <field name="fuel_required"/>
                             </group>
                             <group>
-                                <field name="launch_date"/>
-                                <field name="return_date"/>
+                                <field name="launch_date" widget="daterange" options="{'related_end_date': 'return_date'}"/>
+                                <field name="return_date" widget="daterange" options="{'related_start_date': 'launch_date'}"/>
                                 <field name="duration"/>
                             </group>
                         </group>
